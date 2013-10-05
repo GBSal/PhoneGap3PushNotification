@@ -71,16 +71,18 @@ function registerPushwooshAndroid() {
 
 	//push notifications handler
 	document.addEventListener('push-notification', function(event) {
-	            var title = event.notification.title;
-	            var userData = event.notification.userdata;
+
+        var title = event.notification.title;
+	    var userData = event.notification.userdata;
 
 	            //dump custom data to the console if it exists
 	            if(typeof(userData) != "undefined") {
 					console.warn('user data: ' + JSON.stringify(userData));
+                    alert("custom Data : " + JSON.stringify(userData));
 				}
 
 				//and show alert
-				navigator.notification.alert(title);
+				navigator.notification.alert(title );
 
 				//stopping geopushes
 				pushNotification.stopGeoPushes();
@@ -108,9 +110,12 @@ function onPushwooshAndroidInitialized(pushToken)
 	
 	pushNotification.getTags(function(tags) {
 							console.warn('tags for the device: ' + JSON.stringify(tags));
+                           alert('tags for the device: ' + JSON.stringify(tags));
 						 },
 						 function(error) {
 							console.warn('get tags error: ' + JSON.stringify(error));
+
+                             alert('get tags error: ' + JSON.stringify(error));
 						 });
 	 
 
@@ -123,9 +128,10 @@ function onPushwooshAndroidInitialized(pushToken)
 	
 	//disable sound and vibration
 	//pushNotification.setSoundType(1);
-	//pushNotification.setVibrateType(1);
+
+	pushNotification.setVibrateType(1);
 	
-	pushNotification.setLightScreenOnNotification(false);
+	pushNotification.setLightScreenOnNotification(true);
 	
 	//goal with count
 	//pushNotification.sendGoalAchieved({goal:'purchase', count:3});
@@ -145,15 +151,15 @@ function onPushwooshAndroidInitialized(pushToken)
 										console.warn('setTags failed');
 									});
 		
-	function geolocationSuccess(position) {
-		pushNotification.sendLocation({lat:position.coords.latitude, lon:position.coords.longitude},
-								 function(status) {
-									  console.warn('sendLocation success');
-								 },
-								 function(status) {
-									  console.warn('sendLocation failed');
-								 });
-	};
+//	function geolocationSuccess(position) {
+//		pushNotification.sendLocation({lat:position.coords.latitude, lon:position.coords.longitude},
+//								 function(status) {
+//									  console.warn('sendLocation success');
+//								 },
+//								 function(status) {
+//									  console.warn('sendLocation failed');
+//								 });
+//	};
 		
 	// onError Callback receives a PositionError object
 	//
