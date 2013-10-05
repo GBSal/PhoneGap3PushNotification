@@ -120,14 +120,14 @@ function onPushwooshAndroidInitialized(pushToken)
 	 
 
 	//set multi notificaiton mode
-	//pushNotification.setMultiNotificationMode();
-	//pushNotification.setEnableLED(true);
+	pushNotification.setMultiNotificationMode();
+	pushNotification.setEnableLED(true);
 	
 	//set single notification mode
 	//pushNotification.setSingleNotificationMode();
 	
 	//disable sound and vibration
-	//pushNotification.setSoundType(1);
+	pushNotification.setSoundType(1);
 
 	pushNotification.setVibrateType(1);
 	
